@@ -13,7 +13,7 @@ class PropertiesT(db.Model):
     propType = db.Column(db.String(80))
     location = db.Column(db.String(80))
     photo = db.Column(db.String(80))
-    # filename = db.Column(db.String(350))
+    #filename = db.Column(db.String(350))
 
     def __int__(self, title, descr, numRooms, numBaths, price, propType, location, photo):
         self.title = title
@@ -24,7 +24,7 @@ class PropertiesT(db.Model):
         self.propType = propType
         self.location = location
         self.photo = photo
-        # self.filename = filename
+        #self.filename = filename
     
     def __repr__(self):
         return '<PropertiesT %r>' % (self.title)

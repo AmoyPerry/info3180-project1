@@ -46,7 +46,7 @@ def createProp():
         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         propDetails = PropertiesT(title=title, descr=descr , numRooms=numRooms, numBaths=numBaths , 
-                                 price=price, propType=propType, location = location, filename = filename)
+                                 price=price, propType=propType, location = location, filename=filename)
         
         db.session.add(propDetails) 
         db.session.commit()
@@ -60,8 +60,7 @@ def createProp():
 @app.route('/properties') 
 def displayProp():
     
-    # prp =db.session.execute(db.select(PropertiesT)).scalars()
-    prp = PropertiesT.query.all()
+    prp =db.session.execute(db.select(PropertiesT)).scalars()
     return render_template('allProperties.html', prp=prp)
     
 

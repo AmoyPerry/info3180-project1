@@ -2,23 +2,23 @@
 
 {% block main %}
 
-<h1>{{prp.title}}</h1>
+<h1>{{prop.title}}</h1>
 
 <div class = "entire">
-   <img scr =" {{url_for('static'), filename = 'uploads/'+prp.photo}}" alt="">
+   <img scr =" {{url_for('static'), filename = 'uploads/'+prop.photo}}" alt="">
     <div class = "Price-Type">   
-        <p>{{prp.price}}</p>
-        <p>{{prp.propType}}</p>
+        <p>{{prop.price}}</p>
+        <p>{{prop.propType}}</p>
     </div>
     
-        <p>{{prp.descr}}</p>
+        <p>{{prop.descr}}</p>
 
     <div class="Bed-Bath">
-        <p>{{prp.numRooms}}</p>
-        <p>{{prp.numBaths}}</p>
+        <p>{{prop.numRooms}}</p>
+        <p>{{prop.numBaths}}</p>
     </div>
     
-    <p>{{prp.location}}</p>
+    <p>{{prop.location}}</p>
 
         <button type="submit">Email Realtor </button>
 
