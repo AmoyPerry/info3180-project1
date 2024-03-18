@@ -1,3 +1,31 @@
 body {
     padding-top: 5rem;
+    background-color: rgb(199 198 198 / 27%);
+}
+
+.createProp{
+    height: fit-content ;
+    background-color: white;
+    padding: 20px 20px 10px;
+    border-radius: 5px;
+    gap: 10px;
+}
+
+.group{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+button{
+    color: white;
+    background-color: rgba(13,110, 253, 1);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
 }

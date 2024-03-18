@@ -6,12 +6,11 @@ This file contains the routes for your application.
 """
 import os
 
-from sqlalchemy import table
 from app import app
 from flask import flash, render_template, request, redirect, url_for
 from app.forms import PropForm
 from werkzeug.utils import secure_filename
-from app.models import Properties
+from app.models import PropertiesT
 from app import db
 
 ###
@@ -33,7 +32,7 @@ def about():
 def createProp():
     form = PropForm()
     
-    if form.validate_on_submit():
+    if request.method == "POST" and form.validate_on_submit():
         title = form.title.data
         descr = form.descr.data
         numRooms = form.numRooms.data
@@ -46,14 +45,14 @@ def createProp():
         filename = secure_filename(photo.filename )
         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        propDetails = Properties(title = title, descr = descr, numRooms= numRooms, numBaths = numBaths, 
-                                 price = price, propType = propType, location = location, filename=photo)
+        propDetails = PropertiesT(title=title, descr=descr , numRooms=numRooms, numBaths=numBaths , 
+                                 price=price, propType=propType, location = location, filename = filename)
         
         db.session.add(propDetails) 
         db.session.commit()
         
         flash('Sucessfully added a new property')
-        return redirect(url_for('displayProp')) #remember to create
+        return redirect(url_for('displayProp')) 
     else:
         return render_template('createProp.html', form = form)
 
@@ -61,14 +60,14 @@ def createProp():
 @app.route('/properties') 
 def displayProp():
     
-    # prp = db.session.execute(db.select(Properties)).scalars()
-    prp = Properties.query.all()
+    # prp =db.session.execute(db.select(PropertiesT)).scalars()
+    prp = PropertiesT.query.all()
     return render_template('allProperties.html', prp=prp)
     
 
 @app.route('/properties/<propertyid>') 
 def viewProp(id):
-    prp = Properties.query.filter_by(photo=id).first()
+    prp = PropertiesT.query.filter_by(photo=id).first()
     return render_template("indiProp.html", prp=id)
 
 

@@ -8,44 +8,49 @@
     
         {{form.csrf_token}}
 
-    <div class ="pieces">
+    <div class ="pieces group">
     <label for ='title'> {{form.title.label}} </label>
          {{form.title}}
     </div>
 
-    <div class ="pieces">
+    <div class ="pieces group">
         <label for = 'descr'> {{form.descr.label}} </label>
         {{form.descr}}
     </div>
 
-    <div class ="group">
-        <label for ='numRooms'> {{form.numRooms.label}} </label>
-        {{form.numRooms}}
-    </div>
-
-    <div class ="group">
-        <label for ='numBaths'> {{form.numBaths.label}} </label>
-        {{form.numBaths}}
-
+    <div class = "row">
+        <div class ="group">
+            <label for ='numRooms'> {{form.numRooms.label}} </label>
+            {{form.numRooms}}
+        </div>
+    
+        <div class ="group">
+            <label for ='numBaths'> {{form.numBaths.label}} </label>
+            {{form.numBaths}}
+    
+            
+        </div>
         
     </div>
+   
+    <div class ="row">
+        <div class= "group">
+            <label for = 'price'> {{form.price.label}} </label>
+            {{form.price}}
+        </div>
 
-    <div class= "group">
-        <label for = 'price'> {{form.price.label}} </label>
-        {{form.price}}
-    </div>
-
-    <div class= "group">
-        <label for = 'propType'> {{form.propType.label}} </label>
-        {{form.propType}}
+        <div class= "group">
+            <label for = 'propType'> {{form.propType.label}} </label>
+            {{form.propType}}
+        </div>
     </div>
    
-    <div class = "field">
+    <div class = "field group">
         <label for = 'location'> {{form.location.label}} </label>
         {{form.location}}
     </div>
 
-    <div class = "field">
+    <div class = "field group">
     <label for = 'photo'> {{form.photo.label}} </label>
       {{form.photo}}
     </div>  
