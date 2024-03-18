@@ -1,0 +1,28 @@
+{%extend'base.html'%}
+
+{% block main %}
+
+<h1>{{prp.title}}</h1>
+
+<div class = "entire">
+   <img scr =" {{url_for('static'), filename = 'uploads/'+prp.photo}}" alt="">
+    <div class = "Price-Type">   
+        <p>{{prp.price}}</p>
+        <p>{{prp.propType}}</p>
+    </div>
+    
+        <p>{{prp.descr}}</p>
+
+    <div class="Bed-Bath">
+        <p>{{prp.numRooms}}</p>
+        <p>{{prp.numBaths}}</p>
+    </div>
+    
+    <p>{{prp.location}}</p>
+
+        <button type="submit">Email Realtor </button>
+
+</div>
+{% endblock %}
+
+

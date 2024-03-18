@@ -4,10 +4,15 @@ Jinja2 Documentation:    https://jinja.palletsprojects.com/
 Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
+import os
 
+from sqlalchemy import table
 from app import app
-from flask import render_template, request, redirect, url_for
-
+from flask import flash, render_template, request, redirect, url_for
+from app.forms import PropForm
+from werkzeug.utils import secure_filename
+from app.models import Properties
+from app import db
 
 ###
 # Routing for your application.
@@ -22,7 +27,49 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="Amoy Perry")
+
+@app.route("/properties/create", methods=['POST', 'GET'])
+def createProp():
+    form = PropForm()
+    
+    if form.validate_on_submit():
+        title = form.title.data
+        descr = form.descr.data
+        numRooms = form.numRooms.data
+        numBaths = form.numBaths.data
+        price = form.price.data
+        propType = form.propType.data
+        location = form.location.data
+        photo = form.photo.data
+        
+        filename = secure_filename(photo.filename )
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        
+        propDetails = Properties(title = title, descr = descr, numRooms= numRooms, numBaths = numBaths, 
+                                 price = price, propType = propType, location = location, filename=photo)
+        
+        db.session.add(propDetails) 
+        db.session.commit()
+        
+        flash('Sucessfully added a new property')
+        return redirect(url_for('displayProp')) #remember to create
+    else:
+        return render_template('createProp.html', form = form)
+
+
+@app.route('/properties') 
+def displayProp():
+    
+    # prp = db.session.execute(db.select(Properties)).scalars()
+    prp = Properties.query.all()
+    return render_template('allProperties.html', prp=prp)
+    
+
+@app.route('/properties/<propertyid>') 
+def viewProp(id):
+    prp = Properties.query.filter_by(photo=id).first()
+    return render_template("indiProp.html", prp=id)
 
 
 ###
