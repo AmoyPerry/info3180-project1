@@ -11,7 +11,7 @@ class PropForm(FlaskForm):
     numRooms = IntegerField('No. of Rooms', validators=[InputRequired()])
     numBaths = IntegerField('No. of Bathrooms', validators=[InputRequired()])
     price = IntegerField('Price', validators=[InputRequired()])
-    propType = SelectField('Property Type', choices=[('Housing', 'Apartment'), ('Condo', 'Condo')], validators=[InputRequired()]) 
+    propType = SelectField('Property Type', choices=[('Housing', 'Housing'), ('Apartment', 'Apartment')], validators=[InputRequired()]) 
     location = TextAreaField('Location', validators=[InputRequired()])
     photo = FileField('Photo', validators=[ FileRequired(),FileAllowed(['jpg', 'jpeg', 'png'])])
     
