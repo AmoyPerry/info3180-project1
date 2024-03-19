@@ -1,19 +1,18 @@
 from . import db
-property = "bubble"
 class PropertiesT(db.Model):
     
-    __tablename__ = property
+    __tablename__ = "bubble"
     
-    propID = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    propID = db.Column(db.Integer(), primary_key = True, autoincrement = True)
     title = db.Column(db.String(150))
     descr = db.Column(db.String(120))
-    numRooms = db.Column(db.Integer)
-    numBaths = db.Column(db.Integer)
-    price = db.Column(db.Float)
+    numRooms = db.Column(db.Integer())
+    numBaths = db.Column(db.Integer())
+    price = db.Column(db.String(300))
     propType = db.Column(db.String(80))
     location = db.Column(db.String(80))
-    photo = db.Column(db.String(80))
-    #filename = db.Column(db.String(350))
+    photo = db.Column(db.String(380))
+    # filename = db.Column(db.String(350))
 
     def __int__(self, title, descr, numRooms, numBaths, price, propType, location, photo):
         self.title = title
@@ -24,7 +23,7 @@ class PropertiesT(db.Model):
         self.propType = propType
         self.location = location
         self.photo = photo
-        #self.filename = filename
+        # self.filename = filename
     
     def __repr__(self):
         return '<PropertiesT %r>' % (self.title)

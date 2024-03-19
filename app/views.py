@@ -7,7 +7,7 @@ This file contains the routes for your application.
 import os
 
 from app import app
-from flask import flash, render_template, request, redirect, url_for
+from flask import flash, render_template, request, redirect, url_for,send_from_directory,send_file
 from app.forms import PropForm
 from werkzeug.utils import secure_filename
 from app.models import PropertiesT
@@ -32,29 +32,43 @@ def about():
 def createProp():
     form = PropForm()
     
-    if request.method == "POST" and form.validate_on_submit():
-        title = form.title.data
-        descr = form.descr.data
-        numRooms = form.numRooms.data
-        numBaths = form.numBaths.data
-        price = form.price.data
-        propType = form.propType.data
-        location = form.location.data
-        photo = form.photo.data
-        
-        filename = secure_filename(photo.filename )
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        
-        propDetails = PropertiesT(title=title, descr=descr , numRooms=numRooms, numBaths=numBaths , 
-                                 price=price, propType=propType, location = location, filename=filename)
-        
-        db.session.add(propDetails) 
-        db.session.commit()
-        
-        flash('Sucessfully added a new property')
-        return redirect(url_for('displayProp')) 
+    if request.method == "POST":
+        if form.validate_on_submit():
+            title = form.title.data
+            descr = form.descr.data
+            numRooms = form.numRooms.data
+            numBaths = form.numBaths.data
+            price = form.price.data
+            propType = form.propType.data
+            location = form.location.data
+            photo = form.photo.data
+            
+            filename = secure_filename(photo.filename)
+            photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            
+            propDetails = PropertiesT(title=title, descr=descr , numRooms=numRooms, numBaths=numBaths , 
+                                    price=price, propType=propType, location = location, photo=filename)
+            
+            db.session.add(propDetails) 
+            db.session.commit()
+            
+            flash('Sucessfully added a new property')
+            return redirect(url_for('displayProp')) 
     else:
         return render_template('createProp.html', form = form)
+    
+def get_uploaded_images():
+    uploadDir = app.config['UPLOAD_FOLDER']
+    storage = []
+    for root, dirs, images in os.walk(uploadDir):
+        for image in images:
+            if image.endswith(('.jpg', '.jpeg', '.png')):
+                storage+=(os.path.join(root, image))
+    return storage
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']),filename)
 
 
 @app.route('/properties') 
@@ -65,9 +79,9 @@ def displayProp():
     
 
 @app.route('/properties/<propertyid>') 
-def viewProp(id):
-    prp = PropertiesT.query.filter_by(photo=id).first()
-    return render_template("indiProp.html", prp=id)
+def viewProp(propertyid):
+    x = db.session.execute(db.select(PropertiesT).filter_by(photo=propertyid)).scalar_one()
+    return render_template("indiProp.html", photo=x)
 
 
 ###

@@ -6,15 +6,15 @@
 
 <div class = "entire">
     {%for prop in prp %}
-
-        <img src = "{{url_for('get_image', filename = prop.photo)}}" alt = 'prop.photo'/>
-        <div class ='middle'>
-            <h3>{{prop.title}}</h3>
-            <p>{{prop.location}}</p>
-            <p>${{prop.price}}</p>
+    <div class ='middle'>
+            <img src = "{{url_for('get_image', filename = prop.photo)}}" alt = 'prop.photo'/>
+            <h6>{{prop.title}}</h6>
+            <p class="location">📍{{prop.location}}</p>
+            <span>${{prop.price}}</span>
+        <div class="views">
+            <a href ={{url_for('viewProp', propertyid = prop.id)}}>  View Property</a>
         </div>
-
-    <a href ={{url_for('viewProp', propertyid = prop.id)}}   <button type ="submit">View Property</button> </a>
+    </div>
     {%endfor%}
 </div>
 {%endblock%}
