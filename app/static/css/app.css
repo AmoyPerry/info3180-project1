@@ -42,7 +42,7 @@ button{
 
 img{
     height: 150px;
-    width: 150px;   
+    width: 210px;  
 }
 
 span{
@@ -65,7 +65,7 @@ span{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-a:link{
+a{
     text-decoration: none;
     color: white;
 }
@@ -76,6 +76,53 @@ display: flex;
 justify-content: center;
 border-style: none;
 }
-img{
-    width: 210px;
+
+
+.Price-Type{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+.Bed-Bath{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    background-color: white;
+    width: auto;
+    margin: 25px;
+}
+
+p.price{
+    background-color:rgba(13, 109, 253, 0.662);
+    border-radius: 10px;
+    margin-right: 10px;
+    color: white;
+    padding: 3px;
+}
+
+p.type{
+    background-color: gold;
+    border-radius: 10px;
+    color: white;
+    padding: 2px;
+}
+
+p.bed{
+    margin-right: 10px;
+}
+button.btn{
+    width: 120px;
+    color: white;
+    background-color:   #1bb59f;
+    border: none;
+    border-radius: 5px; 
 }

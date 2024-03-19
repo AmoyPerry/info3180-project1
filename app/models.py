@@ -1,9 +1,8 @@
 from . import db
 class PropertiesT(db.Model):
     
-    __tablename__ = "bubble"
-    
-    propID = db.Column(db.Integer, primary_key = True)
+    __tablename__ = "bubble"    
+    id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(150))
     descr = db.Column(db.String(120))
     numRooms = db.Column(db.Integer)

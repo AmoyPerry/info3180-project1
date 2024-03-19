@@ -2,25 +2,31 @@
 
 {% block main %}
 
-<h1>{{prop.title}}</h1>
+
 {% include 'flash_messages.html' %}
-<div class = "entire">
-   <img scr =" {{url_for('get_image', filename = prop.photo}}" alt="">
-    <div class = "Price-Type">   
-        <p>{{prop.price}}</p>
-        <p>{{prop.propType}}</p>
+<div class = "main">
+
+   <img scr = "{{url_for('get_image', filename = prp.photo)}}" alt="{{prp.photo}}">
+
+    <div class = "P-body"> 
+        <h3>{{prp.title}}</h3>  
+            <div class = "Price-Type">
+            <p class ="price">${{prp.price}} </p>
+            <p class ="type"> {{prp.propType}}</p>
+            </div>
     </div>
-    
-        <p>{{prop.descr}}</p>
+
+        <p>{{prp.descr}}</p>
+        
 
     <div class="Bed-Bath">
-        <p>{{prop.numRooms}}</p>
-        <p>{{prop.numBaths}}</p>
+        <p class ="bed">🛏️{{prp.numRooms}} Bedrooms</p>
+        <p class="bath">🛁{{prp.numBaths}} Bathrooms</p>
     </div>
     
-    <p>{{prop.location}}</p>
+    <p>{{prp.location}}</p>
 
-        <button type="submit">Email Realtor </button>
+        <button type="submit" class = "btn">Email Realtor </button>
 
 </div>
 {% endblock %}
