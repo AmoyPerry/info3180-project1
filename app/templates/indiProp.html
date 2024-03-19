@@ -3,7 +3,7 @@
 {% block main %}
 
 <h1>{{prop.title}}</h1>
-
+{% include 'flash_messages.html' %}
 <div class = "entire">
    <img scr =" {{url_for('static'), filename = 'uploads/'+prop.photo}}" alt="">
     <div class = "Price-Type">   

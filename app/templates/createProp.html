@@ -2,7 +2,7 @@
 
 {%block main %}
 <h1> Add New Property </h1>
-
+{% include 'flash_messages.html' %}
 <div class = "createProp">
     <form action = "{{url_for('createProp')}}" method = "POST" enctype="multipart/form-data">
     
