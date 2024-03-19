@@ -12,7 +12,7 @@
             <p class="location">📍{{prop.location}}</p>
             <span>${{prop.price}}</span>
         <div class="views">
-            <a href ={{url_for('viewProp', propertyid = prop.id)}}>  View Property</a>
+            <a href ="{{url_for('viewProp', propertyid = prop.id)}}">View Property</a>
         </div>
     </div>
     {%endfor%}

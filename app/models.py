@@ -3,11 +3,11 @@ class PropertiesT(db.Model):
     
     __tablename__ = "bubble"
     
-    propID = db.Column(db.Integer(), primary_key = True, autoincrement = True)
+    propID = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(150))
     descr = db.Column(db.String(120))
-    numRooms = db.Column(db.Integer())
-    numBaths = db.Column(db.Integer())
+    numRooms = db.Column(db.Integer)
+    numBaths = db.Column(db.Integer)
     price = db.Column(db.String(300))
     propType = db.Column(db.String(80))
     location = db.Column(db.String(80))

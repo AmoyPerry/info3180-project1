@@ -80,8 +80,13 @@ def displayProp():
 
 @app.route('/properties/<propertyid>') 
 def viewProp(propertyid):
-    x = db.session.execute(db.select(PropertiesT).filter_by(photo=propertyid)).scalar_one()
-    return render_template("indiProp.html", photo=x)
+    # prp = db.session.execute(db.select(PropertiesT).filter_by(photo=propertyid)).scalar_one()
+    # return render_template("indiProp.html", prp=prp)
+    
+    prp = PropertiesT.query.filter_by(photo=propertyid).first_or_404()
+    return render_template("indiProp.html", prp=prp)
+    
+
 
 
 ###

@@ -5,7 +5,7 @@
 <h1>{{prop.title}}</h1>
 {% include 'flash_messages.html' %}
 <div class = "entire">
-   <img scr =" {{url_for('static'), filename = 'uploads/'+prop.photo}}" alt="">
+   <img scr =" {{url_for('get_image', filename = prop.photo}}" alt="">
     <div class = "Price-Type">   
         <p>{{prop.price}}</p>
         <p>{{prop.propType}}</p>
